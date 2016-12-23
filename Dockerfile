@@ -9,8 +9,8 @@ RUN ["apt-get", "upgrade", "-y"]
 # Use this container for ubuntu based distros
 #
 RUN ["apt-get", "install", "-y", "openjdk-8-jre"]
-COPY start.jar .
+RUN mkdir -p /tmp
+COPY app.jar /tmp/app.jar
 #define this if you need to expose a port
-#EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "start.jar"]
-CMD ["-help"]
+EXPOSE 5551
+ENTRYPOINT ["java", "-jar", "/tmp/app.jar"]
